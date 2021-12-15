@@ -3,7 +3,7 @@ import { httpPost } from "./sender";
 const uploadVideo = (payload, { cancelToken, onUploadProgress }) => {
 	const formData = new FormData();
 	formData.append("file", payload);
-	return Promise.resolve(dataFake);
+	// return Promise.resolve(dataFake);
 	return httpPost("/video", formData, { cancelToken, onUploadProgress });
 };
 
