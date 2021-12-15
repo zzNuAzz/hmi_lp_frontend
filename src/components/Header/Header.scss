@@ -1,0 +1,50 @@
+@import "@scss/variable";
+
+.Header {
+	height: #{$header-height};
+	background-color: #{$color-primary};
+	padding: calc(#{$header-height}/5) 20px;
+	color: #{$color-white};
+
+	position: relative;
+	font-weight: 600;
+
+	&__back {
+		position: absolute;
+		left: 10px;
+		top: 50%;
+		transform: translateY(-50%);
+
+		&:hover {
+			opacity: #{$opacity};
+		}
+	}
+
+	&__title {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
+
+	&__config {
+		position: absolute;
+		top: 50%;
+		right: 10px;
+		transform: translateY(-50%);
+
+		height: calc(#{$header-height}*3/5);
+		font-size: calc(#{$header-height}*3/5);
+		line-height: calc(#{$header-height}*3/5);
+		cursor: pointer;
+
+		&:hover {
+			// color: #{$color-secondary}
+			opacity: #{$opacity};
+		}
+	}
+}
+
+.dark .Header {
+	background-color: #{$color-dark}
+}

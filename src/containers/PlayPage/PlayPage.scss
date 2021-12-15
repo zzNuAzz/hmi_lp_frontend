@@ -1,0 +1,80 @@
+@import "@scss/variable";
+
+.PlayPage {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	min-height: 100vh;
+	&__back {
+		position: absolute;
+		display: flex;
+		align-items: center;
+		left: 16px;
+		top: 0;
+		font-size: 24px;
+		span {
+			margin-left: 4px;
+		}
+		&:hover span {
+			text-decoration: underline;
+		}
+	}
+	&__Player {
+		width: 1280px;
+	}
+	&__Subtitle {
+		width: 1280px;
+		text-align: center;
+		border: 1px solid black;
+		border-radius: 16px;
+		box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+		font-weight: 700;
+		height: 68px;
+		font-size: 18px;
+		line-height: 21px;
+		&.sz-small {
+			height: 48px;
+			font-size: 12px;
+			line-height: 14px;
+			padding: 2px 0;
+		}
+		&.sz-large {
+			height: 86px;
+			font-size: 24px;
+			line-height: 28px;
+		}
+	}
+	&__Sound {
+		margin-top: 10px;
+		width: 1280px;
+		text-align: center;
+		text-align: center;
+		border: 1px solid black;
+		border-radius: 16px;
+		box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+		font-weight: 700;
+		height: 48px;
+		font-size: 18px;
+		line-height: 21px;
+		&.sz-small {
+			height: 34px;
+			font-size: 12px;
+			line-height: 14px;
+			padding: 2px 0;
+		}
+		&.sz-large {
+			height: 58px;
+			font-size: 24px;
+			line-height: 28px;
+		}
+	}
+}
+
+.dark .PlayPage {
+	background-color: #{$color-darker};
+	color: #{$color-white};
+    &__Screen, &__Subtitle,&__Sound {
+        background-color: #{$color-dark};
+    }
+}
