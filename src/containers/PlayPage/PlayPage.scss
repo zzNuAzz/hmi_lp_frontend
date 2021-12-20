@@ -22,9 +22,13 @@
 	}
 	&__Player {
 		width: 1280px;
+		margin-bottom: 10px;
 	}
 	&__Subtitle {
 		width: 1280px;
+		display: grid;
+		justify-content: center;
+		align-items: center;
 		text-align: center;
 		border: 1px solid black;
 		border-radius: 16px;

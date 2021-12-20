@@ -14,7 +14,6 @@ export default function Dropzone({
 
 	const _onDrop = (...args) => {
 		if (video) return;
-		console.log("object")
 		onDrop(...args)
 	}
 

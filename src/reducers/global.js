@@ -7,7 +7,7 @@ import store from "store";
 export const initGlobalState = {
 	isDarkTheme: store.get("theme") === "dark" || false,
 	videoInput: null,
-	subtitle: null,
+	subtitle: [],
 	config: {
 		speech: store.get("config_speech") || "medium",
 		nonSpeech: store.get("config_nonSpeech") || "medium",
