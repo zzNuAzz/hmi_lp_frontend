@@ -25,6 +25,7 @@
     "store": "^2.0.12",
     "web-vitals": "^1.0.1"
   },
+  "engines" : { "node" : ">=12" },
   "scripts": {
     "start": "cp ./env/development.env .env && craco start",
     "build": "cp ./env/production.env .env && craco build",
