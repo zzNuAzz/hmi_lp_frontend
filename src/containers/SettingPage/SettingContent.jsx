@@ -38,11 +38,11 @@ export default function SettingContent() {
 				<div className="Setting__Theme-select">
 					<div
 						className={clsx("Setting__Theme-option", {
-							["active-light"]: !isDarkTheme,
+							"active-light": !isDarkTheme,
 						})}
 						onClick={() => globalDispatch(setIsDarkTheme(false))}
 					>
-						<img src={imgLightPreview} />
+						<img src={imgLightPreview} alt="light theme preview"/>
 						Light
 					</div>
 					<div
@@ -50,12 +50,12 @@ export default function SettingContent() {
 							"Setting__Theme-option",
 							"dark-option",
 							{
-								["active-dark"]: isDarkTheme,
+								"active-dark": isDarkTheme,
 							}
 						)}
 						onClick={() => globalDispatch(setIsDarkTheme(true))}
 					>
-						<img src={imgDarkPreview} />
+						<img src={imgDarkPreview} alt="dark theme preview"/>
 						Dark
 					</div>
 				</div>

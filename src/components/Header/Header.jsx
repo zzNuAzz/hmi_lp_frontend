@@ -1,11 +1,11 @@
-import React, { useCallback, useMemo } from "react";
+import React, { useCallback } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
 export default function Header({ back, title, isConfig }) {
 	const navigate = useNavigate();
 	const openSetting = useCallback(() => {
 		navigate("/setting");
-	}, []);
+	}, [navigate]);
 
 
 	const renderBackButton = () => (

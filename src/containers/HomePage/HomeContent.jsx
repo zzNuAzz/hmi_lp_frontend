@@ -55,7 +55,7 @@ export default function HomeContent() {
 			};
 			reader.readAsArrayBuffer(file);
 		});
-	}, []);
+	}, [video, dispatch]);
 
 	const _removeVideo = e => {
 		_cancelUpload();
@@ -112,7 +112,7 @@ export default function HomeContent() {
 			}
 			_cancelUpload();
 		};
-	}, []);
+	}, [dispatch]);
 
 	const _renderActionBox = () => (
 		<div className="HomeContent__box-action">

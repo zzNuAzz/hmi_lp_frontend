@@ -14,8 +14,7 @@ export default function PlayPage() {
 			config: { speech, nonSpeech },
 			subtitle,
 			caption,
-		},
-		dispatch,
+		}
 	] = useGlobalState();
 	const [playedSeconds, setPlayedSecond] = useState(0);
 
@@ -24,7 +23,7 @@ export default function PlayPage() {
 			navigate("/");
 		} else {
 		}
-	}, []);
+	}, [videoInput, navigate]);
 
 	const _parseSubtitle = (subtitle) => {
 		let sub = subtitle.filter(e => e.text.length > 0).map(sequence => {
