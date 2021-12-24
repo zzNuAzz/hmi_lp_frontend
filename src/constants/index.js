@@ -1,4 +1,5 @@
 export const SET_IS_DARK_THEME = "SET_IS_DARK_THEME";
 export const SET_VIDEO_INPUT = "SET_VIDEO_INPUT";
 export const SET_SUBTITLE = "SET_SUBTITLE";
+export const SET_CAPTION = "SET_CAPTION";
 export const SET_TEXT_SIZE = "SET_TEXT_SIZE";

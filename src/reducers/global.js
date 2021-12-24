@@ -1,5 +1,6 @@
 import { SET_VIDEO_INPUT } from "@constants/";
 import { SET_SUBTITLE } from "@constants/";
+import { SET_CAPTION } from "@constants/";
 import { SET_IS_DARK_THEME } from "@constants/";
 import { SET_TEXT_SIZE } from "@constants/";
 import store from "store";
@@ -8,6 +9,7 @@ export const initGlobalState = {
 	isDarkTheme: store.get("theme") === "dark" || false,
 	videoInput: null,
 	subtitle: [],
+	caption: {},
 	config: {
 		speech: store.get("config_speech") || "medium",
 		nonSpeech: store.get("config_nonSpeech") || "medium",
@@ -27,6 +29,9 @@ export default function globalReducer(state, action) {
 			break;
 		case SET_SUBTITLE:
 			newState.subtitle = payload;
+			break;
+		case SET_CAPTION:
+			newState.caption = payload;
 			break;
 		case SET_TEXT_SIZE:
 			const { name, value } = payload;

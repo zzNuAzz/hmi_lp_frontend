@@ -4,7 +4,7 @@ import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import clsx from "clsx";
 import ReactPlayer from "react-player";
-import Subtile from "./Subtitle";
+import Subtitle from "./Subtitle";
 
 export default function PlayPage() {
 	const navigate = useNavigate();
@@ -13,6 +13,7 @@ export default function PlayPage() {
 			videoInput,
 			config: { speech, nonSpeech },
 			subtitle,
+			caption,
 		},
 		dispatch,
 	] = useGlobalState();
@@ -25,7 +26,7 @@ export default function PlayPage() {
 		}
 	}, []);
 
-	const _parseSubtitle = () => {
+	const _parseSubtitle = (subtitle) => {
 		let sub = subtitle.filter(e => e.text.length > 0).map(sequence => {
 			const { result, text } = sequence;
 			const start = result[0].start;
@@ -35,20 +36,26 @@ export default function PlayPage() {
 		return sub.sort((a, b) => a.start - b.start);
 	}
 	const _subSpeech = useMemo(() => _parseSubtitle(subtitle), [subtitle]);
-	console.log("rerender")
+	const _parseCaption = (caption) => {
+		const timeline = Object.keys(caption);
+		const sub = timeline.map(tl => {
+			const text = caption[tl];
+			const [start, end] = tl.split("-").map(t => +t);
+			return { text, start: start / 100, end: end / 100 };
+		});
+		return sub.sort((a, b) => a.start - b.start);
+	}
+	const _subNonSpeech = useMemo(() => _parseCaption(caption), [caption]);
+	
 	const _renderScreen = () => (
 		<React.Fragment>
 			<div className="PlayPage__Player">
-				{/* <video width="1280" height="720" controls>
-					<source src={videoInput.preview} type={videoInput.type} />
-					Your browser does not support the video tag.
-				</video> */}
 				<ReactPlayer
 					url={videoInput.preview}
 					width={1280}
 					height={720}
 					controls={true}
-					onProgress={(progress) => {
+					onProgress={progress => {
 						setPlayedSecond(progress.playedSeconds);
 					}}
 					progressInterval={100}
@@ -56,14 +63,20 @@ export default function PlayPage() {
 			</div>
 			<div className={clsx("PlayPage__Subtitle", "sz-" + speech)}>
 				{subtitle.length > 0 && (
-					<Subtile subClassName="sub-speech" subtitle={_subSpeech} playedSecond={playedSeconds} />
+					<Subtitle
+						subClassName="sub-speech"
+						subtitle={_subSpeech}
+						playedSecond={playedSeconds}
+					/>
 				)}
 			</div>
 
 			<div className={clsx("PlayPage__Sound", "sz-" + nonSpeech)}>
-				{/* <div className="sub sub-non-speech">[bird sound]</div>
-				<div className="sub sub-non-speech">[wind sound]</div> */}
-				{/* <Subtitle subClassName="sub-non-speech" subtitle={[]} playedSecond={playedSeconds} /> */}
+				<Subtitle
+					subClassName="sub-non-speech"
+					subtitle={_subNonSpeech}
+					playedSecond={playedSeconds}
+				/>
 			</div>
 		</React.Fragment>
 	);

@@ -1,4 +1,5 @@
 import { SET_IS_DARK_THEME } from "@constants/";
+import { SET_CAPTION } from "@constants/";
 import { SET_TEXT_SIZE } from "@constants/";
 import { SET_VIDEO_INPUT } from "@constants/";
 import { SET_SUBTITLE } from "@constants/";
@@ -16,6 +17,11 @@ export const setVideoInput = video => ({
 export const setSubtitle = subtitle => ({
 	type: SET_SUBTITLE,
 	payload: subtitle,
+});
+
+export const setCaption = caption => ({
+	type: SET_CAPTION,
+	payload: caption,
 });
 
 export const setTextSize = (name, value) => ({

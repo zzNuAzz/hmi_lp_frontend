@@ -6,7 +6,7 @@ import { setVideoInput } from "@actions/global";
 import { useNavigate } from "react-router";
 import API from "@api/";
 import axios from "axios";
-import { setSubtitle } from "actions/global";
+import { setCaption, setSubtitle } from "actions/global";
 
 export default function HomeContent() {
 	const navigate = useNavigate();
@@ -33,7 +33,7 @@ export default function HomeContent() {
 				if (uploadToken.current !== null) {
 					uploadToken.current.cancel();
 				}
-				
+
 				setUploading(true);
 				setUploadProgress(0);
 				uploadToken.current = axios.CancelToken.source();
@@ -42,11 +42,12 @@ export default function HomeContent() {
 					onUploadProgress: _onUploadProgress,
 				})
 					.then(d => {
-						console.log(d);
-						dispatch(setSubtitle(d));
+						dispatch(setSubtitle(d?.subtitles || []));
+						dispatch(setCaption(d?.captions || {}));
 					})
 					.catch(err => {
-						toast.error(err);
+						dispatch(setVideoInput(null));
+						toast.error(err?.message || err);
 					})
 					.finally(() => {
 						setUploading(false);
@@ -76,34 +77,33 @@ export default function HomeContent() {
 	const make99percent = useRef();
 	const _onUploadProgress = progressEvent => {
 		const { loaded, total } = progressEvent;
-		const realProgress = Math.floor(loaded/total * 100);
+		const realProgress = Math.floor((loaded / total) * 100);
 
 		//fake for fun
-		if(!make99percent.current) {
-			if(realProgress === 100) {
+		if (!make99percent.current) {
+			if (realProgress === 100) {
 				setUploadProgress(99);
-				make99percent.current = setTimeout(()=>{
+				make99percent.current = setTimeout(() => {
 					setUploadProgress(100);
 					make99percent.current = null;
-				},1000)
+				}, 1000);
 			}
 		} else {
-			setUploadProgress(realProgress)
+			setUploadProgress(realProgress);
 		}
-	}
-	
+	};
+
 	const _cancelUpload = () => {
 		if (uploadToken.current !== null) {
 			uploadToken.current.cancel();
 			uploadToken.current = null;
-
 		}
 	};
 
 	const uploadRef = useRef();
 	useEffect(() => {
 		uploadRef.current = uploading;
-	}, [uploading])
+	}, [uploading]);
 
 	useEffect(() => {
 		return () => {

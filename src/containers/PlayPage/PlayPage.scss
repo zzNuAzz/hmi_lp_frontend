@@ -54,7 +54,9 @@
 	&__Sound {
 		margin-top: 10px;
 		width: 1280px;
-		text-align: center;
+		display: grid;
+		justify-content: center;
+		align-items: center;
 		text-align: center;
 		border: 1px solid black;
 		border-radius: 16px;
@@ -63,6 +65,15 @@
 		height: 48px;
 		font-size: 18px;
 		line-height: 21px;
+		.sub-non-speech {
+			&::before {
+				content: "\005B";
+			}
+
+			&::after {
+				content: "\005D";
+			}
+		}
 		&.sz-small {
 			height: 34px;
 			font-size: 12px;

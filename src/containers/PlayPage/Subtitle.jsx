@@ -5,7 +5,7 @@ export default function Subtile({ subtitle, playedSecond, subClassName }) {
 	const [currentSub, setCurrentSub] = useState([]);
 	useEffect(() => {
 		const _currentSub = subtitle.filter(
-			s => s.start <= playedSecond && playedSecond <= s.end
+			s => s.start < playedSecond && playedSecond < s.end
 		);
 		setCurrentSub(_currentSub);
 		return _currentSub
